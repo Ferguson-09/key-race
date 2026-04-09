@@ -1,4 +1,4 @@
-'use strics';
+'use strict';
 
 const startBtn = document.querySelector('.startBtn');
 const display = document.querySelector('.given');
@@ -9,6 +9,9 @@ const restartBtn = document.querySelector('.restart');
 const begin = document.querySelector('.countdown');
 const overlay = document.querySelector('.overlay');
 const tmr = document.querySelector('.timer');
+const score = document.querySelector('.write-up');
+const overOverlay = document.querySelector('.overlay-2');
+
 
 const gameMusic = new Audio("./assets/media/background-music.mp3");
 gameMusic.type = 'background-music/mp3';
@@ -17,7 +20,7 @@ gameMusic.type = 'background-music/mp3';
 const countdown = new Audio('./assets/media/3-second-countdown.mp3');
 countdown.type = '3-second-countdown/mp3';
 
-const gameOver = new Audio('./assets/media/game-over\ sound.mp3')
+const gameOver = new Audio('./assets/media/game-over sound.mp3')
 gameOver.type = 'game-over\ sound/mp3';
 
 const menuMusic = new Audio('./assets/media/menu-music.mp3');
@@ -76,10 +79,13 @@ function greet(){
     input.disabled = true;
 
 
-let time = 100;
+let time = 103;
 let clock;
 let beginTimer = 3;
 let clockBegin;
+
+
+
 
 startBtn.addEventListener('click', () => {
     menuMusic.pause();
@@ -90,6 +96,7 @@ startBtn.addEventListener('click', () => {
     scoreOne.hits = 0;
     input.disabled = false;
 
+    time = 103;
     
 
     if (clock) {
@@ -102,7 +109,6 @@ startBtn.addEventListener('click', () => {
 
     input.value = '';
 
-    time = 103;
     beginTimer = 3;
     startBtn.innerHTML = 'Restart Game';
 
@@ -119,6 +125,7 @@ startBtn.addEventListener('click', () => {
             overlay.style.display = 'none';
             tmr.style.display = 'flex';
             input.disabled = false;
+            clearInterval(clockBegin);
         }
     }, 1000);
 
@@ -127,19 +134,21 @@ startBtn.addEventListener('click', () => {
         timeTxt.innerHTML = `Seconds Remaining: ${time}`
         if (time <= 0) {
             clearInterval(clock);
+            clearInterval(clockBegin);
             display.innerHTML = '';
             timeTxt.innerHTML = 'Game Over';
-            input.disabled = true;
-            alert (`
-                Score: ${scoreOne.hits}
-                WPM: ${(scoreOne.hits * 0.6).toFixed(2)}
-                `)
-        }
-        if (time === 1) {
             gameMusic.pause();
             gameOver.play();
+            score.innerHTML =`
+                <h2>Stats</h2>
+                <p class="score">Score: ${scoreOne.hits}</p>
+                <p class="score">Speed: ${(scoreOne.hits * 0.6).toFixed(2)} WPM</p>
+            `;
+            overOverlay.style.display = 'grid'
+            input.disabled = true;
+            input.value = '';
         }
-    }, 1000);
+    }, 100);
     greet();  
 })
 
@@ -166,4 +175,68 @@ input.addEventListener('input', () => {
     }
 });
 
+restartBtn.addEventListener('click', () => {
+    overOverlay.style.display = 'none';
+    menuMusic.pause();
+    countdown.play();
+    gameMusic.play();
+    gameMusic.loop = true;
 
+    scoreOne.hits = 0;
+    input.disabled = false;
+
+    time = 103;
+    
+
+    if (clock) {
+        clearInterval(clock);
+    }
+
+    if(clockBegin) {
+        clearInterval(clockBegin);
+    }
+
+    input.value = '';
+
+    beginTimer = 3;
+    startBtn.innerHTML = 'Restart Game';
+
+    clockBegin = setInterval(() => {
+        if (beginTimer > 0) {
+            overlay.style.display = 'grid'
+            input.disabled = true;
+            tmr.style.display = 'none';
+            begin.innerHTML = `${beginTimer}`;
+            beginTimer--;
+        }
+
+        else if (beginTimer <= 0) {
+            overlay.style.display = 'none';
+            tmr.style.display = 'flex';
+            input.disabled = false;
+            clearInterval(clockBegin);
+        }
+    }, 1000);
+
+    clock = setInterval(() => {
+        time--;
+        timeTxt.innerHTML = `Seconds Remaining: ${time}`
+        if (time <= 0) {
+            clearInterval(clock);
+            clearInterval(clockBegin);
+            display.innerHTML = '';
+            timeTxt.innerHTML = 'Game Over';
+            gameMusic.pause();
+            gameOver.play();
+            score.innerHTML =`
+                <h2>Stats</h2>
+                <p class="score">Score: ${scoreOne.hits}</p>
+                <p class="score">Speed: ${(scoreOne.hits * 0.6).toFixed(2)} WPM</p>
+            `;
+            overOverlay.style.display = 'grid'
+            input.disabled = true;
+            input.value = '';
+        }
+    }, 100);
+    greet();  
+})
