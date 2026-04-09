@@ -148,7 +148,7 @@ startBtn.addEventListener('click', () => {
             input.disabled = true;
             input.value = '';
         }
-    }, 100);
+    }, 1000);
     greet();  
 })
 
@@ -229,7 +229,7 @@ restartBtn.addEventListener('click', () => {
             gameMusic.pause();
             gameOver.play();
             score.innerHTML =`
-                <h2>Stats</h2>
+                <h2 class='over'>Game Over</h2>
                 <p class="score">Score: ${scoreOne.hits}</p>
                 <p class="score">Speed: ${(scoreOne.hits * 0.6).toFixed(2)} WPM</p>
             `;
@@ -237,6 +237,6 @@ restartBtn.addEventListener('click', () => {
             input.disabled = true;
             input.value = '';
         }
-    }, 100);
+    }, 1000);
     greet();  
 })
