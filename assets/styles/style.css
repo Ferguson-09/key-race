@@ -66,3 +66,49 @@
     font-weight: bold;
     border-radius: 3px;
 }
+
+.timer {
+    display: flex;
+    justify-content: center;
+}
+
+.timer-txt {
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.restart {
+    height: 40px;
+    width: 130px;
+    font-weight: bold;
+    border-radius: 3px;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    display: none;
+    justify-content: center;
+    /* align-items: center; */
+}
+
+.countdown {
+    color: white;
+    font-weight: bold;
+    font-size: 500px;
+}
+
+.countdown{
+    animation: 1s swell infinite;
+}
+
+@keyframes swell {
+    0%, 100% {font-size: 500px; }
+    50%{font-size: 700px;}
+}
+
