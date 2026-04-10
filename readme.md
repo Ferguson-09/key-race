@@ -68,12 +68,10 @@ The game includes:
 
 ---
 
-## 📸 Preview
-```
-![Game Screenshot](./assets/media/key-race-sc.png)
-```
+## 👨‍💻 Authors
+**Ferguson, Wei Yu**
 
 ---
 
-## 👨‍💻 Authors
-**Ferguson, Wei Yu**
+## Give It A Try
+Visit Here: [Key Race](https://ferguson-09.github.io/key-race/)
