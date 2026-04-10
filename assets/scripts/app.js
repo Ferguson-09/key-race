@@ -79,7 +79,7 @@ function greet(){
     input.disabled = true;
 
 
-let time = 103;
+let time;
 let clock;
 let beginTimer = 3;
 let clockBegin;
@@ -96,7 +96,7 @@ startBtn.addEventListener('click', () => {
     scoreOne.hits = 0;
     input.disabled = false;
 
-    time = 103;
+    time = 104;
     
 
     if (clock) {
@@ -185,7 +185,7 @@ restartBtn.addEventListener('click', () => {
     scoreOne.hits = 0;
     input.disabled = false;
 
-    time = 103;
+    time = 104;
     
 
     if (clock) {
