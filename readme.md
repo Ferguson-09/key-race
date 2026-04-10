@@ -74,4 +74,4 @@ The game includes:
 ---
 
 ## Give It A Try
-Visit Here: [Key Race](https://ferguson-09.github.io/key-race/)
+Visit Here: [Key Race](https://ferguson-09.github.io/key-race/)  
