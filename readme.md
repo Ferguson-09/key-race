@@ -68,12 +68,5 @@ The game includes:
 
 ---
 
-## 📸 Preview
-```
-![Game Screenshot](./assets/media/key-race-sc.png)
-```
-
----
-
 ## 👨‍💻 Authors
 **Ferguson, Wei Yu**
