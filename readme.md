@@ -70,3 +70,8 @@ The game includes:
 
 ## 👨‍💻 Authors
 **Ferguson, Wei Yu**
+
+---
+
+## Give It A Try
+Visit Here: [Key Race](https://ferguson-09.github.io/key-race/)
