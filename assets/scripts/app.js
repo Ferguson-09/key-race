@@ -79,7 +79,7 @@ function greet(){
     input.disabled = true;
 
 
-let time;
+let time = 103;
 let clock;
 let beginTimer = 3;
 let clockBegin;
@@ -96,7 +96,7 @@ startBtn.addEventListener('click', () => {
     scoreOne.hits = 0;
     input.disabled = false;
 
-    time = 104;
+    time = 103;
     
 
     if (clock) {
@@ -112,16 +112,17 @@ startBtn.addEventListener('click', () => {
     beginTimer = 3;
     startBtn.innerHTML = 'Restart Game';
 
-    clockBegin = setInterval(() => {
-        if (beginTimer > 0) {
-            overlay.style.display = 'grid'
-            input.disabled = true;
-            tmr.style.display = 'none';
-            begin.innerHTML = `${beginTimer}`;
-            beginTimer--;
-        }
+    overlay.style.display = 'grid'
+    input.disabled = true;
+    tmr.style.display = 'none';
+    begin.innerHTML = `${beginTimer}`;
 
-        else if (beginTimer <= 0) {
+    clockBegin = setInterval(() => {
+            
+        beginTimer--;
+        begin.innerHTML = `${beginTimer}`;
+
+        if (beginTimer <= 0) {
             overlay.style.display = 'none';
             tmr.style.display = 'flex';
             input.disabled = false;
@@ -185,7 +186,7 @@ restartBtn.addEventListener('click', () => {
     scoreOne.hits = 0;
     input.disabled = false;
 
-    time = 104;
+    time = 103;
     
 
     if (clock) {
@@ -200,17 +201,18 @@ restartBtn.addEventListener('click', () => {
 
     beginTimer = 3;
     startBtn.innerHTML = 'Restart Game';
+    overlay.style.display = 'grid'
+        input.disabled = true;
+        tmr.style.display = 'none';
+        begin.innerHTML = `${beginTimer}`;
 
     clockBegin = setInterval(() => {
-        if (beginTimer > 0) {
-            overlay.style.display = 'grid'
-            input.disabled = true;
-            tmr.style.display = 'none';
+            beginTimer--; 
             begin.innerHTML = `${beginTimer}`;
-            beginTimer--;
-        }
+           
+        
 
-        else if (beginTimer <= 0) {
+        if (beginTimer <= 0) {
             overlay.style.display = 'none';
             tmr.style.display = 'flex';
             input.disabled = false;
