@@ -191,7 +191,7 @@
     width: 100%;
     height: 100%;
     background: #000000E6;
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
 }
