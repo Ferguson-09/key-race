@@ -12,6 +12,7 @@ const tmr = document.querySelector('.timer');
 const score = document.querySelector('.write-up');
 const overOverlay = document.querySelector('.overlay-2');
 
+const endMusic = new Audio ('./assets/media/end-music.mp3');
 
 const gameMusic = new Audio("./assets/media/background-music.mp3");
 gameMusic.type = 'background-music/mp3';
@@ -141,13 +142,18 @@ startBtn.addEventListener('click', () => {
             gameMusic.pause();
             gameOver.play();
             score.innerHTML =`
-                <h2>Stats</h2>
+                <h2 class='over'>Game Over</h2>
                 <p class="score">Score: ${scoreOne.hits}</p>
                 <p class="score">Speed: ${(scoreOne.hits * 0.6).toFixed(2)} WPM</p>
             `;
             overOverlay.style.display = 'grid'
             input.disabled = true;
             input.value = '';
+        }
+        if (time <= 4) {
+            endMusic.play();
+        } else {
+            endMusic.pause();
         }
     }, 1000);
     greet();  
@@ -181,6 +187,7 @@ restartBtn.addEventListener('click', () => {
     menuMusic.pause();
     countdown.play();
     gameMusic.play();
+    endMusic.pause();
     gameMusic.loop = true;
 
     scoreOne.hits = 0;
@@ -238,6 +245,11 @@ restartBtn.addEventListener('click', () => {
             overOverlay.style.display = 'grid'
             input.disabled = true;
             input.value = '';
+        }
+        if (time <= 4) {
+            endMusic.play();
+        } else {
+            endMusic.pause();
         }
     }, 1000);
     greet();  
