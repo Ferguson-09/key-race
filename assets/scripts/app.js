@@ -128,6 +128,7 @@ startBtn.addEventListener('click', () => {
             tmr.style.display = 'flex';
             input.disabled = false;
             clearInterval(clockBegin);
+            input.focus();
         }
     }, 1000);
 
@@ -224,6 +225,7 @@ restartBtn.addEventListener('click', () => {
             tmr.style.display = 'flex';
             input.disabled = false;
             clearInterval(clockBegin);
+            input.focus();
         }
     }, 1000);
 
