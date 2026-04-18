@@ -11,6 +11,7 @@ const overlay = document.querySelector('.overlay');
 const tmr = document.querySelector('.timer');
 const score = document.querySelector('.write-up');
 const overOverlay = document.querySelector('.overlay-2');
+const scorelist = document.querySelector('.score-list');
 
 const endMusic = new Audio ('./assets/media/end-music.mp3');
 
@@ -33,6 +34,7 @@ window.addEventListener('load', () => {
         });
     menuMusic.loop = true;
     });
+    
 
 class Score {
     #date;
@@ -89,6 +91,8 @@ let scores = JSON.parse(localStorage.getItem("scores")) || [];
 function addScore(score) {
         scores.push(score);
         scores.sort((a, b) => b - a);
+        scores = scores.slice(0, 10);
+
         localStorage.setItem("scores", JSON.stringify(scores));
     }
 
@@ -135,7 +139,7 @@ startBtn.addEventListener('click', () => {
             clearInterval(clockBegin);
             input.focus();
         }
-    }, 100);
+    }, 400);
 
     clock = setInterval(() => {
         time--;
@@ -158,13 +162,24 @@ startBtn.addEventListener('click', () => {
 
             addScore(scoreOne.hits);
             console.log(scores);
+            scorelist.innerHTML = '';
+            for (let i = 0; i < 9; i++) {
+                if (scores[i] === undefined) break;
+
+                scorelist.innerHTML += `
+                    <div class="ferguson">
+                        <p class="rank">${i + 1}. </p>
+                        <p class="pts">${scores[i]} points</p>
+                    </div>
+                `;
+            }
         }
         if (time <= 4) {
             endMusic.play();
         } else {
             endMusic.pause();
         }
-    }, 100);
+    }, 400);
     greet();  
 })
 
@@ -235,7 +250,7 @@ restartBtn.addEventListener('click', () => {
             clearInterval(clockBegin);
             input.focus();
         }
-    }, 100);
+    }, 400);
 
     clock = setInterval(() => {
         time--;
@@ -258,12 +273,38 @@ restartBtn.addEventListener('click', () => {
             
             addScore(scoreOne.hits);
             console.log(scores);
+            scorelist.innerHTML = '';
+            for (let i = 0; i < 9; i++) {
+                if (scores[i] === undefined) break;
+
+                scorelist.innerHTML += `
+                    <div class="ferguson">
+                        <p class="rank">${i + 1}. </p>
+                        <p class="pts">${scores[i]} points</p>
+                    </div>
+                `;
+            }
         }
         if (time <= 4) {
             endMusic.play();
         } else {
             endMusic.pause();
         }
-    }, 100);
-    greet();  
+    }, 400);
+    greet();    
 })
+
+        if (scores[0] !== undefined) {
+            scorelist.innerHTML = '';
+        } 
+
+        for (let i = 0; i < 9; i++) {
+            if (scores[i] === undefined) break;
+
+            scorelist.innerHTML += `
+                <div class="ferguson">
+                    <p class="rank">${i + 1}. </p>
+                    <p class="pts">${scores[i]} points</p>
+                </div>
+                `;
+            }
