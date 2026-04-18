@@ -85,7 +85,12 @@ let clock;
 let beginTimer = 3;
 let clockBegin;
 
-
+let scores = JSON.parse(localStorage.getItem("scores")) || [];
+function addScore(score) {
+        scores.push(score);
+        scores.sort((a, b) => b - a);
+        localStorage.setItem("scores", JSON.stringify(scores));
+    }
 
 
 startBtn.addEventListener('click', () => {
@@ -130,7 +135,7 @@ startBtn.addEventListener('click', () => {
             clearInterval(clockBegin);
             input.focus();
         }
-    }, 1000);
+    }, 100);
 
     clock = setInterval(() => {
         time--;
@@ -147,16 +152,19 @@ startBtn.addEventListener('click', () => {
                 <p class="score">Score: ${scoreOne.hits}</p>
                 <p class="score">Speed: ${(scoreOne.hits * 0.6).toFixed(2)} WPM</p>
             `;
-            overOverlay.style.display = 'grid'
+            overOverlay.style.display = 'grid';
             input.disabled = true;
             input.value = '';
+
+            addScore(scoreOne.hits);
+            console.log(scores);
         }
         if (time <= 4) {
             endMusic.play();
         } else {
             endMusic.pause();
         }
-    }, 1000);
+    }, 100);
     greet();  
 })
 
@@ -177,7 +185,7 @@ input.addEventListener('input', () => {
     input.value = input.value.replaceAll(space, '');
     
     for(let i = 0; i < word.length; i++) {
-        if(input.value[i].toLowerCase() === arr[i]) {
+        if(input.value[i] && input.value[i].toLowerCase() === arr[i]) {
             letters[i].classList.add('right')
         } else {letters[i].classList.add('wrong')}
     }
@@ -227,7 +235,7 @@ restartBtn.addEventListener('click', () => {
             clearInterval(clockBegin);
             input.focus();
         }
-    }, 1000);
+    }, 100);
 
     clock = setInterval(() => {
         time--;
@@ -247,12 +255,15 @@ restartBtn.addEventListener('click', () => {
             overOverlay.style.display = 'grid'
             input.disabled = true;
             input.value = '';
+            
+            addScore(scoreOne.hits);
+            console.log(scores);
         }
         if (time <= 4) {
             endMusic.play();
         } else {
             endMusic.pause();
         }
-    }, 1000);
+    }, 100);
     greet();  
 })
