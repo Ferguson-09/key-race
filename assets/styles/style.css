@@ -342,6 +342,11 @@
     font-size: 12px;
 }
 
+.ferguson {
+    display: flex;
+    justify-content: space-evenly;
+}
+
 
 @keyframes swell {
     0%, 100% {font-size: 150px; }
