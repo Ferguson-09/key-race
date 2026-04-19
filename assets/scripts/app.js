@@ -1,5 +1,6 @@
 'use strict';
 
+// constants
 const startBtn = document.querySelector('.startBtn');
 const display = document.querySelector('.given');
 const input = document.querySelector('.input');
@@ -13,6 +14,7 @@ const score = document.querySelector('.write-up');
 const overOverlay = document.querySelector('.overlay-2');
 const scorelist = document.querySelector('.score-list');
 
+// music
 const endMusic = new Audio ('./assets/media/end-music.mp3');
 
 const gameMusic = new Audio("./assets/media/background-music.mp3");
@@ -28,6 +30,8 @@ gameOver.type = 'game-over\ sound/mp3';
 const menuMusic = new Audio('./assets/media/menu-music.mp3');
 menuMusic.type = 'menu-music/mp3';
 
+
+// Music on start (usually blocked due to browser settings)
 window.addEventListener('load', () => {
     menuMusic.play().catch(err => {
         console.log("Autoplay blocked:", err);
@@ -36,6 +40,7 @@ window.addEventListener('load', () => {
     });
     
 
+    // Class with constructors
 class Score {
     #date;
     #hits = 0;
@@ -58,14 +63,15 @@ class Score {
 }
 
 
-
+// Word bank
 let words = ['dinosaur', 'love', 'pineapple', 'calendar', 'robot', 'building', 'population', 'weather', 'bottle', 'history', 'dream', 'character', 'money', 'absolute', 'discipline', 'machine', 'accurate', 'connection', 'rainbow', 'bicycle', 'eclipse', 'calculator', 'trouble', 'watermelon', 'developer', 'philosophy', 'database', 'periodic', 'capitalism', 'abominable', 'component', 'future', 'pasta', 'microwave', 'jungle', 'wallet', 'canada', 'coffee', 'beauty', 'agency', 'chocolate', 'eleven', 'technology', 'alphabet', 'knowledge', 'magician', 'professor', 'triangle', 'earthquake', 'baseball', 'beyond', 'evolution', 'banana', 'perfumer', 'computer', 'management', 'discovery', 'ambition', 'music', 'eagle', 'crown', 'chess', 'laptop', 'bedroom', 'delivery', 'enemy', 'button', 'superman', 'library', 'unboxing', 'bookstore', 'language', 'homework', 'fantastic', 'economy', 'interview', 'awesome', 'challenge', 'science', 'mystery', 'famous', 'league', 'memory', 'leather', 'planet', 'software', 'update', 'yellow', 'keyboard', 'window']
 
-
+// variables userd in functions
 let randomNum;
 let word;
 let arr;
 
+// function to get the random word 
 function greet(){
         randomNum = Math.floor(Math.random() * words.length);
         word = words[randomNum];
@@ -87,16 +93,21 @@ let clock;
 let beginTimer = 3;
 let clockBegin;
 
+// Variables used for leaderboard
+
 let scores = JSON.parse(localStorage.getItem("scores")) || [];
+
 function addScore(score) {
         scores.push(score);
+
+        // to put the scores in descendinig order
         scores.sort((a, b) => b - a);
         scores = scores.slice(0, 10);
 
         localStorage.setItem("scores", JSON.stringify(scores));
     }
 
-
+// To start game
 startBtn.addEventListener('click', () => {
     menuMusic.pause();
     countdown.play();
@@ -127,6 +138,7 @@ startBtn.addEventListener('click', () => {
     tmr.style.display = 'none';
     begin.innerHTML = `${beginTimer}`;
 
+    // timer for begining countdown
     clockBegin = setInterval(() => {
             
         beginTimer--;
@@ -139,8 +151,9 @@ startBtn.addEventListener('click', () => {
             clearInterval(clockBegin);
             input.focus();
         }
-    }, 400);
+    }, 1000);
 
+    // Timer for main game
     clock = setInterval(() => {
         time--;
         timeTxt.innerHTML = `Seconds Remaining: ${time}`
@@ -167,8 +180,8 @@ startBtn.addEventListener('click', () => {
                 if (scores[i] === undefined) break;
 
                 scorelist.innerHTML += `
-                    <div class="ferguson">
-                        <p class="rank">${i + 1}. </p>
+                    <div class="score-row">
+                        <p class="rank">#${i + 1}. </p>
                         <p class="pts">${scores[i]} points</p>
                     </div>
                 `;
@@ -179,12 +192,13 @@ startBtn.addEventListener('click', () => {
         } else {
             endMusic.pause();
         }
-    }, 400);
+    }, 1000);
     greet();  
 })
 
 const space = ' ';
 
+// To check if words are correct
 input.addEventListener('input', () => {
     if (input.value.trim().toLowerCase() === words[randomNum]){
         greet();
@@ -206,6 +220,7 @@ input.addEventListener('input', () => {
     }
 });
 
+// To restart after a finished game
 restartBtn.addEventListener('click', () => {
     overOverlay.style.display = 'none';
     menuMusic.pause();
@@ -230,6 +245,7 @@ restartBtn.addEventListener('click', () => {
 
     input.value = '';
 
+    // Countdown to begin game
     beginTimer = 3;
     startBtn.innerHTML = 'Restart Game';
     overlay.style.display = 'grid'
@@ -250,8 +266,9 @@ restartBtn.addEventListener('click', () => {
             clearInterval(clockBegin);
             input.focus();
         }
-    }, 400);
+    }, 1000);
 
+// Timer for main game
     clock = setInterval(() => {
         time--;
         timeTxt.innerHTML = `Seconds Remaining: ${time}`
@@ -278,8 +295,8 @@ restartBtn.addEventListener('click', () => {
                 if (scores[i] === undefined) break;
 
                 scorelist.innerHTML += `
-                    <div class="ferguson">
-                        <p class="rank">${i + 1}. </p>
+                    <div class="score-row">
+                        <p class="rank">#${i + 1}. </p>
                         <p class="pts">${scores[i]} points</p>
                     </div>
                 `;
@@ -290,10 +307,11 @@ restartBtn.addEventListener('click', () => {
         } else {
             endMusic.pause();
         }
-    }, 400);
+    }, 1000);
     greet();    
 })
 
+// checks for local storage info then updates leaderboard
         if (scores[0] !== undefined) {
             scorelist.innerHTML = '';
         } 
@@ -302,8 +320,8 @@ restartBtn.addEventListener('click', () => {
             if (scores[i] === undefined) break;
 
             scorelist.innerHTML += `
-                <div class="ferguson">
-                    <p class="rank">${i + 1}. </p>
+                <div class="score-row">
+                    <p class="rank">#${i + 1}. </p>
                     <p class="pts">${scores[i]} points</p>
                 </div>
                 `;
