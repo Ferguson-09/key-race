@@ -14,6 +14,8 @@ Type the displayed words as fast as you can before time runs out!
 - Score tracking
 - Words-per-minute (WPM) calculation
 - Restart functionality
+- Leaderboard that shows the top 9 scores and updates in real time
+- Fun and captivating UI
 
 ---
 
@@ -56,14 +58,13 @@ The game includes:
 - HTML
 - CSS
 - JavaScript 
+- Local Storage API (Functioning leaderboard system)
 
 ---
 
 ## 🚀 Future Improvements
 - Difficulty levels
-- High score saving (localStorage)
 - Mobile responsiveness
-- Leaderboard
 - Custom timer settings
 
 ---

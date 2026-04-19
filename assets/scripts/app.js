@@ -180,8 +180,8 @@ startBtn.addEventListener('click', () => {
                 if (scores[i] === undefined) break;
 
                 scorelist.innerHTML += `
-                    <div class="ferguson">
-                        <p class="rank">${i + 1}. </p>
+                    <div class="score-row">
+                        <p class="rank">#${i + 1}. </p>
                         <p class="pts">${scores[i]} points</p>
                     </div>
                 `;
@@ -295,8 +295,8 @@ restartBtn.addEventListener('click', () => {
                 if (scores[i] === undefined) break;
 
                 scorelist.innerHTML += `
-                    <div class="ferguson">
-                        <p class="rank">${i + 1}. </p>
+                    <div class="score-row">
+                        <p class="rank">#${i + 1}. </p>
                         <p class="pts">${scores[i]} points</p>
                     </div>
                 `;
@@ -320,11 +320,9 @@ restartBtn.addEventListener('click', () => {
             if (scores[i] === undefined) break;
 
             scorelist.innerHTML += `
-                <div class="ferguson">
-                    <p class="rank">${i + 1}. </p>
+                <div class="score-row">
+                    <p class="rank">#${i + 1}. </p>
                     <p class="pts">${scores[i]} points</p>
                 </div>
                 `;
             }
-
-            
