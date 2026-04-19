@@ -274,7 +274,7 @@
     top: 44%;
     right: 20px;
     transform: translateY(-50%);
-    background: #00000099;
+    background: #03030399;
     backdrop-filter: blur(10px);
     border: 2px solid #ff0bca;
     border-radius: 15px;
@@ -305,46 +305,37 @@
 
 .score-empty {
     text-align: center;
-    color: #fcf7f755;
+    color: #fff7f755;
     font-size: 13px;
-    margin: 10px 0;
+    margin: 0 0 8px 0;
     line-height: 1.6;
 }
-
-.score-entry {
+ 
+.score-row {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 7px 8px;
+    justify-content: space-between;
+    padding: 7px 10px;
     border-radius: 8px;
     background: #00000044;
-    border: 1px solid #ffffff11;
-    font-size: 13px;
+    border: 1px solid #05050511;
+    margin-bottom: 5px;
 }
-
-.score-rank {
-    color: #faf62a;
+ 
+.rank {
+    color: #f0ed31;
     font-weight: bold;
-    text-shadow: 0 0 8px #fdfa29;
-    min-width: 22px;
+    font-size: 13px;
+    text-shadow: 0 0 8px #fffc3a;
+    margin: 0;
+    min-width: 28px;
+}
+ 
+.pts {
+    color: #11fdf5;
     font-size: 12px;
-}
-
-.score-hits {
-    color: #0cfff7;
-    text-shadow: 0 0 6px #05fdf566;
-    flex: 1;
-}
-
-.score-wpm {
-    color: #ff06c9;
-    text-shadow: 0 0 6px #fd07c866;
-    font-size: 12px;
-}
-
-.ferguson {
-    display: flex;
-    justify-content: space-evenly;
+    text-shadow: 0 0 6px #11fcf466;
+    margin: 0;
 }
 
 
